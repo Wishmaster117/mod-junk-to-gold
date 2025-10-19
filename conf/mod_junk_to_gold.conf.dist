@@ -1,0 +1,25 @@
+[worldserver]
+#
+# JunkToGold (mod-junk-to-gold)
+# Enables/disables the module.
+# 1 = enabled, 0 = disabled
+#
+JunkToGold.Enable = 1
+
+# Print a log line on startup / reload
+JunkToGold.Announce = 1
+
+# Automatically sell some items in addition to grey ones
+#
+# If enabled, white-quality items (quality=1) that are
+# STRICTLY worse than what the player already has equipped
+# will be sold on loot. (Based on quality, then item level.)
+#
+# 0 = disabled (default); 1 = enabled
+JunkToGold.SellCommonIfWorse = 0
+
+# Also sell WEAPONS (white-quality) if they are worse than equipped
+# Criteria for weapons: Quality > DPS > Item level > Required level.
+# WARNING: keep the weapon if any possible slot is empty or already has an item >=
+# 0 = disabled (default); 1 = enabled
+JunkToGold.SellWeaponsIfWorse = 0
