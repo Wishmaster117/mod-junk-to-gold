@@ -23,3 +23,7 @@ JunkToGold.SellCommonIfWorse = 0
 # WARNING: keep the weapon if any possible slot is empty or already has an item >=
 # 0 = disabled (default); 1 = enabled
 JunkToGold.SellWeaponsIfWorse = 0
+
+# Enable/disable selling for human-controlled players
+# 1 = enabled (default), 0 = disabled (sell for bots only if you use Playerbots)
+JunkToGold.EnableForHumans = 1

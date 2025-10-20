@@ -6,6 +6,7 @@ namespace
 {
     bool sEnabled  = true;
     bool sAnnounce = true;
+	bool sEnableForHumans = true;
 	bool sSellCommonIfWorse = false;
 	bool sSellWeaponsIfWorse = false;
 }
@@ -21,6 +22,7 @@ namespace J2G
     {
         sEnabled  = sConfigMgr->GetOption<bool>("JunkToGold.Enable",   true);
         sAnnounce = sConfigMgr->GetOption<bool>("JunkToGold.Announce", true);
+		sEnableForHumans = sConfigMgr->GetOption<bool>("JunkToGold.EnableForHumans", true);
 		sSellCommonIfWorse = sConfigMgr->GetOption<bool>("JunkToGold.SellCommonIfWorse", false);
 		sSellWeaponsIfWorse = sConfigMgr->GetOption<bool>("JunkToGold.SellWeaponsIfWorse", false);
 
@@ -28,6 +30,11 @@ namespace J2G
             LOG_INFO("module", "mod-junk-to-gold: {}", sEnabled ? "enabled" : "disabled");
     }
 
+    bool EnableForHumans()
+    {
+        return sEnableForHumans;
+    }
+	 
     bool SellCommonIfWorse()
     {
         return sSellCommonIfWorse;

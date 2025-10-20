@@ -6,6 +6,28 @@
 #include "SharedDefines.h"
 #include <vector>
 #include <cmath>
+#include "ObjectGuid.h"
+
+// Detect module playerbots
+#if defined(__has_include)
+#  if __has_include("playerbot/playerbot.h")
+#    include "playerbot/playerbot.h"
+#    define J2G_HAVE_PLAYERBOTS 1
+#  elif __has_include("playerbot/PlayerbotAI.h")
+#    include "playerbot/PlayerbotAI.h"
+#    define J2G_HAVE_PLAYERBOTS 1
+#  endif
+#endif
+
+// Helper : determine if player or Bot
+static inline bool J2G_IsBot(Player* p)
+{
+#ifdef J2G_HAVE_PLAYERBOTS
+    return p && p->IsPlayerbot();
+#else
+    return false;
+#endif
+}
 
 // --- Helpers to compare a white-quality loot item with the current equipment (armor & weapons) ---
 static inline int CompareItemTemplates(ItemTemplate const* a, ItemTemplate const* b)
@@ -157,6 +179,18 @@ public:
         // --- Global Toggle ---
         if (!J2G::IsEnabled())
             return; // // module off: do nothing
+
+        // If selling for humans is disabled, only process bots
+        if (!J2G::EnableForHumans())
+        {
+#ifdef J2G_HAVE_PLAYERBOTS
+            if (!J2G_IsBot(player))
+                return; // skip humans, keep bot loot handling
+#else
+            // Playerbots headers not found: treat everyone as human -> skip
+            return;
+#endif
+        }
 
         if (!item)
             return;

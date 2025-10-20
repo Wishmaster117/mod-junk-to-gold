@@ -6,6 +6,9 @@ namespace J2G
 {
     bool IsEnabled();
 
+    // Enable/disable selling for human-controlled players
+    bool EnableForHumans();
+
     bool SellCommonIfWorse();
 
     bool SellWeaponsIfWorse();
