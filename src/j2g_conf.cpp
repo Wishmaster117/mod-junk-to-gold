@@ -23,11 +23,17 @@ namespace J2G
         sEnabled  = sConfigMgr->GetOption<bool>("JunkToGold.Enable",   true);
         sAnnounce = sConfigMgr->GetOption<bool>("JunkToGold.Announce", true);
 		sEnableForHumans = sConfigMgr->GetOption<bool>("JunkToGold.EnableForHumans", true);
-		sSellCommonIfWorse = sConfigMgr->GetOption<bool>("JunkToGold.SellCommonIfWorse", false);
-		sSellWeaponsIfWorse = sConfigMgr->GetOption<bool>("JunkToGold.SellWeaponsIfWorse", false);
+        sSellCommonIfWorse = sConfigMgr->GetOption<bool>("JunkToGold.SellCommonIfWorse", false);
+        sSellWeaponsIfWorse = sConfigMgr->GetOption<bool>("JunkToGold.SellWeaponsIfWorse", false);
 
         if (sAnnounce)
+        {
             LOG_INFO("module", "mod-junk-to-gold: {}", sEnabled ? "enabled" : "disabled");
+            LOG_INFO("module", "mod-junk-to-gold: JunkToGold.Announce {}", sAnnounce ? "enabled" : "disabled");
+            LOG_INFO("module", "mod-junk-to-gold: JunkToGold.EnableForHumans {}", sEnableForHumans ? "enabled" : "disabled");
+            LOG_INFO("module", "mod-junk-to-gold: JunkToGold.SellCommonIfWorse {}", sSellCommonIfWorse ? "enabled" : "disabled");
+            LOG_INFO("module", "mod-junk-to-gold: JunkToGold.SellWeaponsIfWorse {}", sSellWeaponsIfWorse ? "enabled" : "disabled");
+        }
     }
 
     bool EnableForHumans()
